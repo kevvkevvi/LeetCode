@@ -9,10 +9,12 @@ class Solution(object):
         :type head: ListNode
         :rtype: None Do not return anything, modify head in-place instead.
         """
+        # use slow and fast pointer to find the middle of the linked list
         slow, fast = head, head.next
         while fast and fast.next:
             slow = slow.next
             fast = fast.next.next
+        # reverse the second part of the linked list
         second = slow.next
         prev = slow.next = None
         while second:
@@ -20,7 +22,7 @@ class Solution(object):
             second.next = prev
             prev = second
             second = tmp
-        
+        # alternate merging
         first, second = head, prev
         while second:
             tmp1, tmp2 = first.next, second.next
